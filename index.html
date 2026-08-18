@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Álbum CCLS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="ledger">
+
+  <header class="masthead">
+    <div class="masthead__left">
+      <span class="masthead__eyebrow">Registro de colección</span>
+      <h1 class="masthead__title">Álbum <span class="masthead__title-accent">CCLS</span></h1>
+    </div>
+    <div class="masthead__right">
+      <div class="stat">
+        <span class="stat__value" id="statOwned">0</span>
+        <span class="stat__label">pegadas</span>
+      </div>
+      <div class="stat">
+        <span class="stat__value" id="statTotal">0</span>
+        <span class="stat__label">total</span>
+      </div>
+      <div class="stat stat--pct">
+        <span class="stat__value" id="statPct">0%</span>
+        <span class="stat__label">completado</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="progress-rail">
+    <div class="progress-rail__fill" id="progressFill"></div>
+  </div>
+
+  <main class="board">
+
+    <section class="pack-station" aria-label="Abrir sobre">
+      <div class="pack-station__inner">
+        <div class="pack" id="packArt">
+          <span class="pack__seal">CCLS</span>
+          <span class="pack__count">5</span>
+        </div>
+        <button class="btn btn--primary" id="openPackBtn">Abrir sobre</button>
+        <p class="pack-station__hint" id="packHint">Trae 5 figuritas al azar.</p>
+      </div>
+
+      <div class="reveal-tray" id="revealTray" hidden>
+        <h2 class="reveal-tray__title">Salieron estas</h2>
+        <div class="reveal-tray__grid" id="revealGrid"></div>
+        <button class="btn btn--ghost" id="closeRevealBtn">Guardar y cerrar</button>
+      </div>
+
+      <div class="dupes" id="dupesPanel">
+        <h2 class="dupes__title">Repetidas <span id="dupesCount">(0)</span></h2>
+        <div class="dupes__list" id="dupesList">
+          <p class="dupes__empty">Todavía no tenés repetidas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="album" aria-label="Álbum">
+      <nav class="tabs" id="tabs"></nav>
+      <div class="page" id="page">
+        <div class="page__head">
+          <h2 class="page__title" id="pageTitle">—</h2>
+          <span class="page__count" id="pageCount">0 / 0</span>
+        </div>
+        <div class="page__grid" id="pageGrid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="colophon">
+    <span id="syncStatus">Guardado local</span>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Firebase (opcional). Si no configurás firebaseConfig en config.js, el álbum
+     guarda todo en este navegador con localStorage y funciona igual. -->
+<script type="module" src="firebase-sync.js"></script>
+<script src="stickers.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

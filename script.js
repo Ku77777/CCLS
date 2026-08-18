@@ -152,10 +152,14 @@
       el.revealGrid.appendChild(card);
     });
 
-    // ya sumamos las copias al estado (se guarda al cerrar la bandeja)
     drawn.forEach((id) => {
       state.owned[id] = ownedCount(id) + 1;
     });
+
+    // se guarda ya mismo, no hace falta cerrar la bandeja para que quede
+    renderStats();
+    renderDupes();
+    persist();
 
     el.revealTray.hidden = false;
     el.openPackBtn.disabled = true;
@@ -166,7 +170,6 @@
     el.revealTray.hidden = true;
     el.openPackBtn.disabled = false;
     renderAll();
-    persist();
   }
 
   // ---------- Guardado ----------
@@ -201,6 +204,13 @@
 
   el.openPackBtn.addEventListener("click", openPack);
   el.closeRevealBtn.addEventListener("click", closeReveal);
+
+  window.addEventListener("beforeunload", () => {
+    if (window.AlbumStorage) {
+      clearTimeout(saveTimeout);
+      window.AlbumStorage.save(state);
+    }
+  });
 
   if (window.AlbumStorage) {
     boot();
